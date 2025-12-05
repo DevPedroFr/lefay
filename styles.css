@@ -8,6 +8,8 @@
     --light-gold: #E6C200;
     --soft-beige: #F0EDE3;
     --cream: #FFFAF0;
+    --notice-bg: #fffbe6;
+    --notice-border: #ffe58f;
 }
 
 * {
@@ -39,15 +41,15 @@ section:nth-child(odd) {
     width: 100%;
 }
 
-/* Navbar */
+/* Navbar (diminuída) */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     background-color: var(--white2);
-    padding: 20px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 0; /* Reduzido */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     z-index: 1000;
 }
 
@@ -58,21 +60,23 @@ section:nth-child(odd) {
 }
 
 .logo {
-    height: 85px;
+    height: 60px; /* Reduzido */
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
-    height: 100px;
+    height: 60px; /* Reduzido */
     width: auto;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-dark);
-    margin-left: 50px;
+    margin-left: 32px; /* um pouco menor */
     font-weight: 500;
     transition: color 0.3s ease;
-    font-size: 25px;
+    font-size: 20px; /* menor */
 }
 
 .nav-links a:hover {
@@ -88,7 +92,7 @@ section:nth-child(odd) {
 
 /* Welcome Hero Section */
 .welcome-hero {
-    height: 100vh;
+    height: 90vh; /* ligeiramente menor para acompanhar navbar */
     background: linear-gradient(135deg, var(--gold), var(--sunflower));
     color: var(--white);
     display: flex;
@@ -107,14 +111,14 @@ section:nth-child(odd) {
 .hero-content h1 {
     font-family: "Arial Black", sans-serif;
     font-weight: 900;
-    font-size: 9rem;
-    margin-bottom: 20px;
+    font-size: 8rem; /* levemente menor */
+    margin-bottom: 18px;
     line-height: 1.2;
 }
 
 .hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
+    font-size: 1.6rem;
+    margin-bottom: 36px;
 }
 
 .cta-button {
@@ -127,15 +131,22 @@ section:nth-child(odd) {
     font-size: 1.2rem;
     font-weight: bold;
     transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
 }
 
+.cta-button:active {
+    animation: buttonClickPulse 0.6s ease-out;
+    transform: scale(0.98);
+}
+
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -153,20 +164,39 @@ section:nth-child(odd) {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-24px); }
+    60% { transform: translateY(-12px); }
+}
+
+@keyframes rippleEffect {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
     }
-    40% {
-        transform: translateY(-30px);
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
     }
-    60% {
-        transform: translateY(-15px);
-    }
+}
+
+/* Update notice */
+.update-notice {
+    padding: 24px 0;
+    background: var(--notice-bg);
+    border-top: 1px solid var(--notice-border);
+    border-bottom: 1px solid var(--notice-border);
+}
+.update-notice p {
+    text-align: center;
+    font-size: 1rem;
 }
 
 /* Sections */
 section {
-    padding: 100px 0;
+    padding: 90px 0;
 }
 
 section:nth-child(even) {
@@ -176,10 +206,19 @@ section:nth-child(even) {
 /* Títulos de seção gerais */
 .section-title {
     text-align: center;
-    font-size: 5rem;
+    font-size: 4.5rem;
     margin-bottom: 30px;
     color: var(--gold);
     margin-left: 20px;
+}
+
+/* Subtítulo seção serviços */
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto 30px;
+    color: #555;
 }
 
 /* About Section */
@@ -190,8 +229,8 @@ section:nth-child(even) {
 }
 
 .about-content p {
-    margin-bottom: 30px;
-    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
 }
 
 .about-content h3 {
@@ -202,63 +241,106 @@ section:nth-child(even) {
 }
 
 /* MVV Section */
+.mvv-intro {
+    max-width: 1000px;
+    margin: 60px auto 0;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.mvv-intro p {
+    margin-bottom: 8px;
+}
+
 .mvv-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 60px;
     max-width: 100%;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
+/* MVV cards com comportamento semelhante aos cards de serviços (interativo) */
 .mvv-card {
     background-color: var(--white);
-    padding: 40px 30px;
+    padding: 32px 24px;
     border-radius: 10px;
     text-align: center;
-    height: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    min-height: 140px;
+    max-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition:
+        all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
 }
 
-.mvv-card h2 {
+.mvv-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.8s ease-in-out,
+        padding 0.3s ease;
+    padding: 0 10px;
+    font-size: 1.1rem;
+    color: var(--white);
+    width: 100%;
+}
+
+.mvv-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--gold);
+    max-height: 600px;
+}
+
+.mvv-card:hover h3 {
+    color: var(--white);
+}
+
+.mvv-card:hover .mvv-details {
+    max-height: 500px;
+    opacity: 1;
+    padding: 12px 10px;
+}
+
+.mvv-card h3 {
     color: var(--gold);
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    transition: color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.mvv-card p {
-    font-size: 1.5rem;
-    line-height: 1.8;
-}
-
-.values-list {
-    list-style: none;
-    text-align: left;
+/* Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 50px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .values-list li {
-    padding: 15px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--beige);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
-
 .values-list li:last-child {
     border-bottom: none;
 }
 
-/* Services and Pains Section */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    max-width: 70%;
-    margin-left: 170px;
-}
-
-.pains .services-grid {
-    max-width: 70%;
-    margin-left: 170px;
+.service-card h3 {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    transition: color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .service-card {
@@ -266,14 +348,13 @@ section:nth-child(even) {
     padding: 40px 30px;
     border-radius: 10px;
     text-align: center;
-    transition: 
+    transition:
         all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    height: auto;
     min-height: 150px;
-    max-height: 150px;
+    max-height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -284,7 +365,6 @@ section:nth-child(even) {
 .service-card:hover {
     transform: translateY(-5px);
     background-color: var(--gold);
-    min-height: auto;
     max-height: 600px;
 }
 
@@ -296,11 +376,12 @@ section:nth-child(even) {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: 
-        max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-        opacity 0.8s ease-in-out;
+    transition:
+        max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.8s ease-in-out,
+        padding 0.3s ease;
     padding: 0 10px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--white);
     width: 100%;
 }
@@ -308,153 +389,61 @@ section:nth-child(even) {
 .service-card:hover .service-details {
     max-height: 500px;
     opacity: 1;
-    padding: 20px 10px;
+    padding: 12px 10px;
 }
 
-.service-details ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.service-details li {
-    margin: 10px 0;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-/* Guarantees Section */
-.guarantees-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 60px;
-    max-width: 100%;
-}
-
-.guarantee-card {
-    background-color: var(--white);
-    padding: 40px;
-    border-radius: 30px;
-    text-align: center;
-    transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 250px;
-    flex: 0 0 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.guarantee-card:hover {
-    transform: translateY(-5px);
-}
-
-.guarantee-card h3 {
-    color: var(--gold);
-    margin-bottom: 15px;
-    font-size: 2rem;
-}
-
-.guarantee-card p {
-    font-size: 1.4rem;
-    line-height: 1.8;
-}
-
-.how-we-guarantee {
-    max-width: 100%;
-    text-align: left;
-    padding: 40px;
-    background-color: var(--white);
-    border-radius: 10px;
-}
-
-.how-we-guarantee h3 {
-    color: var(--gold);
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.how-we-guarantee p {
-    font-size: 1.5rem;
-    line-height: 1.8;
-}
-
-/* Team/CEO Section */
-.team .container {
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-.ceo-container {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 100px;
-}
-
-.ceo-container.reverse {
-    flex-direction: row-reverse;
-}
-
-
-.ceo-photo img {
-    width: 350px;
-    height: 100%;
-    object-fit: cover;
-}
-
-#pedro img {
-    width: 400px;
-    height: 100%;
-    object-fit: cover;
-}
-
-.ceo-info {
-    flex: 1;
-}
-
-.ceo-info h3 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-    color: var(--gold);
-    font-weight: bold;
-}
-
-.ceo-info > p {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--gold);
-    font-weight: 500;
-}
-
-.ceo-text p {
-    color: var(--text-dark);
-    font-size: 1.5rem;
-    line-height: 1.6;
+.service-details p {
+    margin: 8px 0;
 }
 
 /* Contact Form */
+.contact-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25D366;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+.whatsapp-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-button:active {
+    animation: buttonClickPulse 0.6s ease-out;
+    transform: scale(0.96);
+}
+
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 15px;
+    padding: 14px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1.1rem;
+    border-radius: 6px;
+    font-size: 1.05rem;
     transition: border-color 0.3s ease;
+    background-color: #fff;
 }
 
 .form-group input:focus,
@@ -475,19 +464,25 @@ section:nth-child(even) {
     background-color: var(--gold);
     color: var(--white);
     border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
+    border-radius: 6px;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .submit-button:hover {
-    background-color: var(--sunflower);
+    background-color: var(--light-gold);
 }
 
+.submit-button:active {
+    animation: buttonClickPulse 0.6s ease-out;
+    transform: scale(0.98);
+}
 
 #status-message {
-    margin-top: 15px;
+    margin-top: 12px;
     padding: 10px;
     border-radius: 4px;
     text-align: center;
@@ -503,7 +498,6 @@ section:nth-child(even) {
     color: #a94442;
 }
 
-
 /* Footer */
 .footer {
     background-color: var(--gold);
@@ -512,20 +506,49 @@ section:nth-child(even) {
     text-align: center;
 }
 
+/* Animações de clique para botões */
+@keyframes buttonClickPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(201, 160, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(201, 160, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(201, 160, 0, 0);
+    }
+}
+
+/* Animação de ripple effect no clique (efeito de onda) */
+.cta-button::before,
+.submit-button::before,
+.whatsapp-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.cta-button:active::before,
+.submit-button:active::before,
+.whatsapp-button:active::before {
+    animation: rippleEffect 0.6s ease-out;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
     .hero-content h1 {
-        font-size: 7rem;
+        font-size: 6.5rem;
     }
     
     .section-title {
         font-size: 4rem;
-    }
-    
-    .services-grid, .pains .services-grid {
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 
@@ -540,6 +563,7 @@ section:nth-child(even) {
     
     .welcome-hero {
         padding-right: 10%;
+        height: 80vh;
     }
     
     .section-title {
@@ -554,6 +578,7 @@ section:nth-child(even) {
     .mvv-grid {
         grid-template-columns: 1fr;
         margin-left: 0;
+        margin-right: 0;
     }
     
     .ceo-text p {
@@ -564,6 +589,7 @@ section:nth-child(even) {
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
+        color: var(--text-dark);
     }
     
     .nav-links {
@@ -577,7 +603,7 @@ section:nth-child(even) {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 150px;
+        padding-top: 120px;
         transition: right 0.3s ease;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
@@ -587,12 +613,12 @@ section:nth-child(even) {
     }
     
     .nav-links a {
-        margin: 20px 0;
-        font-size: 20px;
+        margin: 16px 0;
+        font-size: 18px;
     }
     
     .hero-content h1 {
-        font-size: 4rem;
+        font-size: 3.8rem;
     }
     
     .hero-content {
@@ -605,55 +631,45 @@ section:nth-child(even) {
         justify-content: center;
     }
     
-    .ceo-container, .ceo-container.reverse {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .ceo-photo {
-        margin: 0 auto 20px;
-    }
-    
-    .ceo-text p {
-        font-size: 1.8rem;
-        text-align: center;
-    }
-    
-    .ceo-info h3 {
-        font-size: 2.5rem;
-    }
-    
-    .ceo-info > p {
-        font-size: 1.5rem;
-    }
-    
     .section-title {
         font-size: 3rem;
     }
     
-    .services-grid, .pains .services-grid {
+    .services-grid {
         grid-template-columns: 1fr;
-        max-width: 100%;
-        margin-left: 0;
     }
 
+    /* Interações ao toque para MVV e Serviços */
+    .mvv-card.expanded,
     .service-card.expanded {
-        min-height: auto;
-        max-height: 600px;
         background-color: var(--gold);
+        max-height: 600px;
     }
-
+    .mvv-card.expanded h3,
     .service-card.expanded h3 {
         color: var(--white);
     }
-
+    .mvv-card.expanded .mvv-details,
     .service-card.expanded .service-details {
         max-height: 500px;
         opacity: 1;
         padding: 20px 10px;
     }
 
-    
+    /* Fechar cards quando outro é expandido */
+    .service-card.expanded ~ .service-card.expanded {
+        background-color: var(--white);
+        max-height: 160px;
+    }
+    .service-card.expanded ~ .service-card.expanded h3 {
+        color: var(--gold);
+    }
+    .service-card.expanded ~ .service-card.expanded .service-details {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 10px;
+    }
+
     .about-content p {
         font-size: 1.2rem;
     }
@@ -661,15 +677,11 @@ section:nth-child(even) {
     .about-content h3 {
         font-size: 3rem;
     }
-    
-    .mvv-card, .mvv-card p, .values-list li {
-        font-size: 1.2rem;
-    }
 }
 
 @media (max-width: 576px) {
     .logo img {
-        height: 70px;
+        height: 52px;
     }
     
     .hero-content h1 {
@@ -677,7 +689,7 @@ section:nth-child(even) {
     }
     
     .hero-content p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .cta-button {
@@ -686,31 +698,15 @@ section:nth-child(even) {
     }
     
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
     }
     
     .about-content p {
         font-size: 1rem;
     }
     
-    .ceo-text p {
-        font-size: 1.5rem;
-    }
-    
-    .guarantee-card {
-        width: 100%;
-        flex: 0 0 100%;
-        height: auto;
-        min-height: 200px;
-        padding: 30px 20px;
-    }
-    
-    .guarantee-card h3 {
-        font-size: 1.5rem;
-    }
-    
-    .how-we-guarantee p {
-        font-size: 1.2rem;
+    .update-notice p {
+        font-size: 0.95rem;
     }
     
     .contact-form {
