@@ -263,53 +263,28 @@ section:nth-child(even) {
 
 /* MVV cards com comportamento semelhante aos cards de serviços (interativo) */
 .mvv-card {
-    background-color: var(--white);
-    padding: 32px 24px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, var(--white) 0%, #fafaf8 100%);
+    padding: 40px 32px;
+    border-radius: 24px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 8px rgba(0, 0, 0, 0.04);
     overflow: hidden;
-    min-height: 140px;
-    max-height: 160px;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition:
-        all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
-}
-
-.mvv-details {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition:
-        max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity 0.8s ease-in-out,
-        padding 0.3s ease;
-    padding: 0 10px;
-    font-size: 1.1rem;
-    color: var(--white);
-    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .mvv-card:hover {
-    transform: translateY(-5px);
-    background-color: var(--gold);
-    max-height: 600px;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
-.mvv-card:hover h3 {
-    color: var(--white);
-}
-
-.mvv-card:hover .mvv-details {
-    max-height: 500px;
-    opacity: 1;
-    padding: 12px 10px;
-}
+.mvv-details { display: none; }
 
 .mvv-card h3 {
     color: var(--gold);
@@ -344,56 +319,196 @@ section:nth-child(even) {
 }
 
 .service-card {
-    background-color: var(--white);
-    padding: 40px 30px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, var(--white) 0%, #fafaf8 100%);
+    padding: 45px 36px;
+    border-radius: 24px;
     text-align: center;
-    transition:
-        all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 8px rgba(0, 0, 0, 0.04);
     overflow: hidden;
-    min-height: 150px;
-    max-height: 160px;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    background-color: var(--gold);
-    max-height: 600px;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
-.service-card:hover h3 {
-    color: var(--white);
-}
-
-.service-details {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition:
-        max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity 0.8s ease-in-out,
-        padding 0.3s ease;
-    padding: 0 10px;
-    font-size: 1.1rem;
-    color: var(--white);
-    width: 100%;
-}
-
-.service-card:hover .service-details {
-    max-height: 500px;
-    opacity: 1;
-    padding: 12px 10px;
-}
+.service-details { display: none; }
 
 .service-details p {
     margin: 8px 0;
+}
+
+/* Full-card link wrapper */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.card-link:hover {
+    transform: scale(1.01);
+}
+
+.card-link:focus .service-card,
+.card-link:focus .mvv-card {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+/* Detail Pages Styling */
+.detail-hero {
+    background: transparent;
+    color: var(--white);
+    padding: 120px 0 100px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.detail-title {
+    font-family: "Arial Black", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.detail-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+.detail-content {
+    padding: 80px 0;
+    background: linear-gradient(180deg, var(--sunflower) 0%, #fffef5 40%, var(--cream) 100%);
+    min-height: 100vh;
+}
+
+body > .detail-hero {
+    background: linear-gradient(180deg, var(--gold) 0%, var(--sunflower) 100%);
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.detail-text {
+    padding-right: 20px;
+}
+
+.detail-intro {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+}
+
+.service-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.info-block {
+    padding: 32px;
+    background: linear-gradient(135deg, var(--white) 0%, #fafaf8 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.info-block h3 {
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.info-block p {
+    color: #555;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.values-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.value-item {
+    padding: 20px;
+    background: linear-gradient(135deg, var(--white) 0%, #fafaf8 100%);
+    border-radius: 16px;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateX(8px);
+}
+
+.value-item h3 {
+    color: var(--gold);
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.value-item p {
+    color: #555;
+    font-size: 1rem;
+}
+
+.detail-image-placeholder {
+    position: sticky;
+    top: 120px;
+}
+
+.image-area {
+    background: transparent;
+    border-radius: 24px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    transition: all 0.3s ease;
+}
+
+.image-area img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.image-area img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.15));
 }
 
 /* Contact Form */
@@ -584,6 +699,19 @@ section:nth-child(even) {
     .ceo-text p {
         font-size: 2rem;
     }
+
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .detail-title {
+        font-size: 2.8rem;
+    }
+
+    .detail-image-placeholder {
+        position: static;
+    }
 }
 
 @media (max-width: 768px) {
@@ -639,36 +767,36 @@ section:nth-child(even) {
         grid-template-columns: 1fr;
     }
 
-    /* Interações ao toque para MVV e Serviços */
-    .mvv-card.expanded,
-    .service-card.expanded {
-        background-color: var(--gold);
-        max-height: 600px;
-    }
-    .mvv-card.expanded h3,
-    .service-card.expanded h3 {
-        color: var(--white);
-    }
-    .mvv-card.expanded .mvv-details,
-    .service-card.expanded .service-details {
-        max-height: 500px;
-        opacity: 1;
-        padding: 20px 10px;
+    .detail-hero {
+        padding: 80px 0 60px;
     }
 
-    /* Fechar cards quando outro é expandido */
-    .service-card.expanded ~ .service-card.expanded {
-        background-color: var(--white);
-        max-height: 160px;
+    .detail-title {
+        font-size: 2.2rem;
     }
-    .service-card.expanded ~ .service-card.expanded h3 {
-        color: var(--gold);
+
+    .detail-subtitle {
+        font-size: 1.1rem;
     }
-    .service-card.expanded ~ .service-card.expanded .service-details {
-        max-height: 0;
-        opacity: 0;
-        padding: 0 10px;
+
+    .detail-content {
+        padding: 60px 0;
     }
+
+    .detail-text {
+        padding-right: 0;
+    }
+
+    .content-wrapper {
+        gap: 30px;
+    }
+
+    .image-area {
+        min-height: 280px;
+        padding: 40px 30px;
+    }
+
+    /* Removidas interações de expansão em mobile; cards são links */
 
     .about-content p {
         font-size: 1.2rem;
