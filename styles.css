@@ -99,19 +99,20 @@ section:nth-child(odd) {
     align-items: center;
     position: relative;
     padding-top: 80px;
+    padding-left: 40px;
 }
 
 .welcome-hero .container {
     display: block;
+    padding: 0;
+    max-width: none;
 }
 
 .hero-content {
     text-align: left;
-    max-width: 100%;
+    max-width: 600px;
     margin: 0;
-    padding-right: 100px;
-    padding-left: 0;
-    margin-left: -400px;
+    padding: 0;
 }
 
 .hero-image {
@@ -141,14 +142,14 @@ section:nth-child(odd) {
 .hero-content h1 {
     font-family: "Arial Black", sans-serif;
     font-weight: 900;
-    font-size: 8rem; /* levemente menor */
+    font-size: 8rem;
     margin-bottom: 18px;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .hero-content p {
-    font-size: 1.6rem;
-    margin-bottom: 36px;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
 }
 
 .cta-button {
@@ -253,9 +254,9 @@ section:nth-child(even) {
 
 /* About Section */
 .about-content {
-    max-width: 100%;
-    margin: 0 0 0 20px;
-    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .about-content p {
@@ -398,6 +399,54 @@ section:nth-child(even) {
 
 .service-card:hover p {
     color: var(--white);
+}
+
+.service-description {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.service-card:hover .service-description {
+    color: var(--white);
+    max-height: 150px;
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+/* Botão Saiba Mais */
+.saiba-mais-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+}
+
+.saiba-mais-btn i {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .saiba-mais-btn {
+    background: var(--white);
+    color: var(--gold);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:hover .saiba-mais-btn i {
+    transform: translateX(4px);
 }
 
 .service-details { display: none; }
@@ -770,8 +819,24 @@ body > .detail-hero {
 
 /* Responsive Design */
 @media (max-width: 1200px) {
+    .welcome-hero {
+        padding-left: 30px;
+    }
+    
+    .hero-content {
+        max-width: 520px;
+    }
+    
     .hero-content h1 {
-        font-size: 6.5rem;
+        font-size: 5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.3rem;
+    }
+    
+    .hero-image {
+        max-width: 48%;
     }
     
     .section-title {
@@ -780,22 +845,26 @@ body > .detail-hero {
 }
 
 @media (max-width: 992px) {
-    .hero-content h1 {
-        font-size: 5rem;
+    .welcome-hero {
+        padding-left: 25px;
+        height: 80vh;
     }
     
     .hero-content {
-        max-width: 70%;
+        max-width: 480px;
     }
     
-    .welcome-hero {
-        padding-right: 10%;
-        height: 80vh;
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
     }
 
     .hero-image {
-        max-width: 35%;
-        right: 3%;
+        max-width: 40%;
+        right: 2%;
     }
     
     .section-title {
@@ -866,8 +935,10 @@ body > .detail-hero {
         font-size: 18px;
     }
     
-    .hero-content h1 {
-        font-size: 3.8rem;
+    .welcome-hero {
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content: center;
     }
     
     .hero-content {
@@ -875,9 +946,13 @@ body > .detail-hero {
         text-align: center;
     }
     
-    .welcome-hero {
-        padding-right: 0;
-        justify-content: center;
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 24px;
     }
 
     .hero-image {
@@ -938,8 +1013,6 @@ body > .detail-hero {
         max-height: 250px;
     }
 
-    /* Removidas interações de expansão em mobile; cards são links */
-
     .about-content p {
         font-size: 1.2rem;
     }
@@ -950,12 +1023,17 @@ body > .detail-hero {
 }
 
 @media (max-width: 576px) {
+    .welcome-hero {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
     .logo img {
         height: 52px;
     }
     
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
     
     .hero-content p {
@@ -963,8 +1041,8 @@ body > .detail-hero {
     }
     
     .cta-button {
-        padding: 12px 30px;
-        font-size: 1rem;
+        padding: 12px 28px;
+        font-size: 0.95rem;
     }
     
     .section-title {
